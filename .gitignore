@@ -1,0 +1,9 @@
+# Environment Directory
+env/
+# Logs files
+logs/
+# Cache Directories
+__pycache__/
+
+# Environment Variables file
+.env
