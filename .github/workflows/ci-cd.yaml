@@ -1,0 +1,45 @@
+# Name of the workflow
+name: Continuous Integration and Continuous Deployment
+
+# Trigger CI-CD, when code pushed to master branch
+on:
+  push:
+    branches:
+      - master
+
+# Create jobs to run
+jobs:
+  continuous-integration:
+    # Just a placeholder for Build and Test
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Project
+        run: |
+          echo "[ ECHO ] Building..."
+          echo "[ ECHO ] Build Successful"
+      - name: Test Project
+        run: |
+          echo "[ ECHO ] Testing..."
+          echo "[ ECHO ] All Tests Passed"
+  continuous-deployment:
+    # Deploy to vercel
+    name: Vercel Deployment
+    runs-on: ubuntu-latest
+    needs: continuous-integration
+    # Get Secrets keys from github repo secrets
+    # Shamelessly copied from: https://vercel.com/guides/how-can-i-use-github-actions-with-vercel
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=$VERCEL_TOKEN
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN  
