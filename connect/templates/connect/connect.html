@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <fieldset>
+        <legend><h1>Actively Seeking People</h1></legend>
+        {% for seeking in seekings %}
+            <fieldset>
+                <p>{{ seeking.user_id }}</p>
+                <p>{{ seeking.event_name }}</p>
+                <p>{{ seeking.event_description }}</p>
+                <p>{{ seeking.event_link }}</p>
+                <p>{{ seeking.looking_for }}</p>
+            </fieldset>
+        {% endfor %}
+    </fieldset>
+{% endblock  %}

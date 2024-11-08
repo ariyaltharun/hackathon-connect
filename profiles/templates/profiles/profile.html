@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div>
+        <div>
+            <fieldset>
+                <legend><h1>Profile</h1></legend>
+                <p>{{ user_profile.user_id }}</p>
+                <p>{{ user_profile.bio }}</p>
+                <p>{{ user_profile.linkedin_handle }}</p>
+                <p>{{ user_profile.twitter_handle }}</p>
+                <p>{{ user_profile.instagram_handle }}</p>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset>
+                <legend><h1>Skills</h1></legend>
+                <p>{{ user_skills.user_id }}</p>
+                <p>{{ user_skills.skill_name }}</p>
+                <p>{{ user_skills.proficiency_level }}</p>
+                <p>{{ user_skills.description }}</p>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset>
+                <legend><h1>Projects</h1></legend>
+                <p>{{ user_projects.user_id }}</p>
+                <p>{{ user_projects.project_name }}</p>
+                <p>{{ user_projects.description }}</p>
+                <p>{{ user_projects.github_link }}</p>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset>
+                <legend><h1>Seekings</h1></legend>
+                <p>{{ user_seekings.user_id }}</p>
+                <p>{{ user_seekings.event_name }}</p>
+                <p>{{ user_seekings.event_description }}</p>
+                <p>{{ user_seekings.event_link }}</p>
+                <p>{{ user_seekings.looking_for }}</p>
+            </fieldset>
+        </div>
+    </div>
+{% endblock  %}
