@@ -15,29 +15,44 @@
         <div>
             <fieldset>
                 <legend><h1>Skills</h1></legend>
-                <p>{{ user_skills.user_id }}</p>
-                <p>{{ user_skills.skill_name }}</p>
-                <p>{{ user_skills.proficiency_level }}</p>
-                <p>{{ user_skills.description }}</p>
+                <table>
+                    <thead>
+                        {% for skill in user_skills.0.keys %}
+                            <th>{{ skill }}</th>
+                        {% endfor %}
+                    </thead>
+                    <tbody>
+                        {% for skill in user_skills %}
+                            <tr>
+                                <td>{{ skill.skill_name }}</td>
+                                <td>{{ skill.proficiency_level }}</td>
+                                <td>{{ skill.description }}</td>
+                                {% comment %} <p>{{ skill.user_id }}</p> {% endcomment %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </fieldset>
         </div>
         <div>
             <fieldset>
                 <legend><h1>Projects</h1></legend>
-                <p>{{ user_projects.user_id }}</p>
-                <p>{{ user_projects.project_name }}</p>
-                <p>{{ user_projects.description }}</p>
-                <p>{{ user_projects.github_link }}</p>
+                {% for project in user_projects %}
+                    <p>{{ project.user_id }}</p>
+                    <p>{{ project.project_name }}</p>
+                    <p>{{ project.description }}</p>
+                    <p>{{ project.github_link }}</p>
+                {% endfor %}
             </fieldset>
         </div>
         <div>
             <fieldset>
                 <legend><h1>Seekings</h1></legend>
-                <p>{{ user_seekings.user_id }}</p>
-                <p>{{ user_seekings.event_name }}</p>
-                <p>{{ user_seekings.event_description }}</p>
-                <p>{{ user_seekings.event_link }}</p>
-                <p>{{ user_seekings.looking_for }}</p>
+                <p>{{ seeking.user_id }}</p>
+                <p>{{ seeking.event_name }}</p>
+                <p>{{ seeking.event_description }}</p>
+                <p>{{ seeking.event_link }}</p>
+                <p>{{ seeking.looking_for }}</p>
             </fieldset>
         </div>
     </div>

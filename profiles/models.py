@@ -62,3 +62,12 @@ class Seeking(models.Model):
 # So, in connect app, use this "Actively looking for someone" table to display who are available 
 # connect with them
 
+# # Organize everything into profile model
+# class Profile(models.Model):
+#     user_id = models.ForeignKey(to=User, on_delete=models.CASCADE) # User name, email
+#     bio = models.TextField(blank=True)
+#     social_handles = None
+#     college_info = None
+#     skills = None
+#     projects = None
+#     seekings = None
