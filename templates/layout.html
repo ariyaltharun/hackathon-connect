@@ -22,8 +22,10 @@
             <a href="{% url 'login' %}">login</a>
         {% endif %}
     </nav>
+    <div id="root"></div>
     {% block content %}
     <h1>Hackathon Connect</h1>    
     {% endblock %}
+    <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>

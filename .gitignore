@@ -4,6 +4,8 @@ env/
 logs/
 # Cache Directories
 __pycache__/
+# Node modules
+node_modules/
 
 # Environment Variables file
 .env
