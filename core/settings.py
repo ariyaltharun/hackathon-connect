@@ -27,10 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DEV')
 
-ALLOWED_HOSTS = ['.vercel.app']
-
+ALLOWED_HOSTS = [os.getenv('HOST')]
 
 # Application definition
 
@@ -56,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'HackathonConnect.urls'
+ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
     {
@@ -74,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'HackathonConnect.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
@@ -127,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_ROOT = 'staticfiles/'
-STATIC_URL = 'https://cdn.jsdelivr.net/gh/ariyaltharun/hackathon-connect@master/staticfiles'
+STATIC_URL = os.getenv('STATIC_URL')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]

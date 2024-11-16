@@ -6,7 +6,7 @@ from profiles.models import Seeking
 def connect_view(request):
     seekings = Seeking.objects.all()
     context = {
-        'seekings': list(seekings)
+        'seekings': list(Seeking.objects.values())
     }
-    print(context)
+    print(list(context['seekings']), type(list(context['seekings'])))
     return render(request, 'connect/connect.html', context=context)
