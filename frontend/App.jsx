@@ -1,16 +1,22 @@
-// export default function App() {
-//     // return <h1 className=" bg-red-800">Test React</h1>
-//     return 
-// }
-import Component from "./components/testComponent"
+import React from "react";
+import Home from "./pages/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Connect from "./pages/connect";
+import Login from "./pages/login";
 
 export default function App() {
     return (
-        <>
-            <h1 className="text-3xl font-bold underline bg-green-800">
-                Test React and TailWindCSS
-            </h1>
-            <Component />
-        </>
+        <BrowserRouter basename="/">
+            <Routes>
+                <Route key={1} path="/" element={<Home />}/>
+                <Route key={2} path="/connect" element={<Connect />}/>
+                <Route key={2} path="/users/login" element={<Login />}/>
+            </Routes>
+        </BrowserRouter>
+        // <>
+        //     <Navbar />
+        //     <Background />
+        //     {/* <Home /> */}
+        // </>
     )
 }

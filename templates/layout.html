@@ -1,31 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Hackathon Connect {% endblock %} </title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <nav>
-        <a>Logo</a>
-        <a href="/">Home</a>
-        <a href="/connect">Connect</a>
-        {% if user.is_authenticated %}
-            <a> logged in as: <a href="{% url 'profile' user.username %}" style="color: blue;">{{ user.username }} </a> </a>
-            <form action="{% url 'logout' %}" method="POST">
-                {% csrf_token %}
-                <button type="submit">logout</button>
-            </form>
-        {% else %}
-            <a href="{% url 'login' %}">login</a>
-        {% endif %}
-    </nav>
-    <div id="root"></div>
-    {% block content %}
-    <h1>Hackathon Connect</h1>    
-    {% endblock %}
-    <script src="{% static 'js/index.js' %}"></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %} Hackathon Connect {% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    </head>
+    <body>
+        <div id="root"></div>
+        {% block content %} {% endblock %}
+        <script>
+            var is_authenticated = "{{ user.is_authenticated }}";
+            // console.log(is_authenticated)
+        </script>
+        <script src="{% static 'js/index.js' %}" type="module"></script>
+    </body>
 </html>
