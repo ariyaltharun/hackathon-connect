@@ -5,10 +5,38 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Register a New User</h1>
+    {% comment %} <h1>Register a New User</h1>
     <form action="{% url 'register' %}" method="POST">
         {% csrf_token %}
         {{ form }}
         <button>Submit</button>
-    </form>
+    </form> {% endcomment %}
+
+    <div class="absolute inset-0 bg-transparent flex flex-col justify-center items-center h-dvh">
+        <div class="md:w-1/4 border-2 border-blue-800 shadow-xl bg-black sm:w-3/4 rounded-lg p-8 my-auto sm:m-1">
+            <div class="text-center sm:text-2xl text-3xl font-mono underline p-2 py-8 sm:py-6">
+                <h1>Register a New User</h1>
+            </div>
+            <div class="bg-gray-800 text-lg mx-8 py-8 mb-8 rounded-lg">
+                <form action="{% url 'register' %}" method="POST" class="flex flex-col p-2 px-4 items-center">
+                    {% csrf_token %}
+                    <p class="text-red-700 text-medium">{{ form.non_field_errors|safe }}</p>
+                    {% for field in form %}
+                        <div class="py-1 flex flex-col">
+                            {{ field.errors }}
+                            {% comment %} {{ field.help_text }} {% endcomment %}
+                            {{ field.label_tag }} {{ field }}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="bg-blue-800 py-1 rounded-lg mt-4 px-8">Login</button>
+                </form>
+                <div class="p-2 px-4 text-center">
+                    <p>Already have an account? <a href="{% url 'login' %}" class="text-blue-800 underline">Login!</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="py-2 self-center">
+            <p class="font-mono">Made with ❤️</p>
+        </div>
+    </div>
 {% endblock %}

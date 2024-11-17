@@ -1,11 +1,37 @@
 {% extends "layout.html" %}
 
+{% block title %}
+    User Login
+{% endblock %}
+
 {% block content %}
-    <h2> User Login </h2>
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Login</button>
-    </form>
-    <p>Don't Have An Account? <a href="{% url 'register' %}">Sign Up</a></p>
+    <div class="absolute inset-0 bg-transparent flex flex-col justify-center items-center h-dvh">
+        <div class="md:w-1/4 border-2 border-blue-800 shadow-xl bg-black sm:w-3/4 rounded-lg p-8 sm:p-6 mt-2rem my-auto">
+            <div class="text-center sm:text-2xl text-3xl font-mono underline p-2 py-8">
+                <h1>User Login</h1>
+            </div>
+            <div class="bg-gray-800 text-lg mx-8 py-8 mb-8 rounded-lg">
+                <form action="{% url 'login' %}" method="POST" class="flex flex-col p-2 px-4 items-center">
+                    {% csrf_token %}
+                    <p class="text-red-700 text-medium">{{ form.non_field_errors|safe }}</p>
+                    {% for field in form %}
+                        <div class="py-1 flex flex-col">
+                            {{ field.errors }}
+                            {{ field.label_tag }} {{ field }}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="bg-blue-800 py-1 rounded-lg mt-4 px-8">Login</button>
+                </form>
+                <div class="p-2 px-4 text-center">
+                    <p>Dont' have an account yet? <a href="{% url 'register' %}" class="text-blue-800 underline">Sign up!</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="py-4 self-center">
+            <p class="font-mono">Made with ❤️</p>
+        </div>
+    </div>
 {% endblock  %}
+{% comment %} <input placeholder="username" class="border-1 border-blue-900 rounded-md m-2 p-1 px-2 w-3/4" type='text' />
+<input placeholder="password" class="border-1 border-blue-900 rounded-md m-2 p-1 px-2 w-3/4" type='password' />
+<input placeholder="password" class="border-1 border-blue-900 rounded-md m-2 p-1 px-2 w-3/4" type='password' /> {% endcomment %}
